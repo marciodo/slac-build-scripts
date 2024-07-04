@@ -4,6 +4,8 @@ set -e
 VER="$1"
 ARCH="$2"
 
+TOP="$(dirname "${BASH_SOURCE[0]}")"
+
 function usage {
     echo "USAGE: $0 <version> <arch>"
     echo "Ex:"
@@ -29,5 +31,7 @@ if [ ! -f "../boost-build/bin/b2" ]; then
     ./bootstrap.sh
     ./b2 --prefix="$PWD/../boost-build"
 fi
+
+cp -fv "$TOP/boost-jamfiles/"* .
 
 ../boost-build/bin/b2 --build-dir="$EPICS_PACKAGE_TOP/boost/$VER/build/$ARCH" --prefix="$EPICS_PACKAGE_TOP/boost/$VER/$ARCH"

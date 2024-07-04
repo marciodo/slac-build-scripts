@@ -18,7 +18,7 @@ project : default-build <toolset>gcc ;
 import python ;
 if ! [ python.configured ]
 {
-    using python : 2.7 : /usr ;
+    using python : 3.9 : /usr ;
 }
 
 path-constant ICU_PATH : /usr ;
