@@ -34,4 +34,4 @@ fi
 
 cp -fv "$TOP/boost-jamfiles/"* .
 
-../boost-build/bin/b2 --build-dir="$EPICS_PACKAGE_TOP/boost/$VER/build/$ARCH" --prefix="$EPICS_PACKAGE_TOP/boost/$VER/$ARCH"
+../boost-build/bin/b2 --build-dir="$EPICS_PACKAGE_TOP/boost/$VER/build/$ARCH" --prefix="$EPICS_PACKAGE_TOP/boost/$VER/$ARCH" install
