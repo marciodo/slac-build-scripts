@@ -4,7 +4,7 @@ set -e
 VER="$1"
 ARCH="$2"
 
-TOP="$(dirname "${BASH_SOURCE[0]}")"
+TOP="$(realpath "$(dirname "${BASH_SOURCE[0]}")")"
 
 function usage {
     echo "USAGE: $0 <version> <arch>"

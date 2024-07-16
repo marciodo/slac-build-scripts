@@ -18,7 +18,7 @@ project : default-build <toolset>gcc ;
 import python ;
 if ! [ python.configured ]
 {
-    using python : 3.9 : /usr ;
+    using python : 3.8 : /sdf/sw/epics/package/anaconda/envs/python3.8envs/v2.4 ;
 }
 
 path-constant ICU_PATH : /usr ;
