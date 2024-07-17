@@ -23,7 +23,18 @@ fi
 cd $EPICS_PACKAGE_TOP/yaml-cpp/$VER/src
 mkdir -p ../build
 
-cmake . -B../build/$ARCH -DCMAKE_C_FLAGS=-fPIC -DCMAKE_CXX_FLAGS=-fPIC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PWD/../$ARCH"
+if [[ $ARCH =~ "buildroot"* ]]; then
+    EXTRA_CMAKE_ARGS="-DCMAKE_TOOLCHAIN_FILE=${TOP}/toolchains/${ARCH}.cmake"
+fi
+
+# Boost build? darn...
+if [[ $VER =~ "boost-1.64.0" ]]; then
+    BOOST_ROOT="$EPICS_PACKAGE_TOP/boost/1.64.0/$ARCH"
+    EXTRA_CMAKE_ARGS="$EXTRA_CMAKE_ARGS -DBOOST_ROOT=${BOOST_ROOT} -DBoost_INCLUDE_DIR=${BOOST_ROOT}/include"
+    echo "Using boost"
+fi
+
+cmake . -B../build/$ARCH -DCMAKE_C_FLAGS=-fPIC -DCMAKE_CXX_FLAGS=-fPIC -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PWD/../$ARCH" $EXTRA_CMAKE_ARGS
 
 cd ../build/$ARCH
 

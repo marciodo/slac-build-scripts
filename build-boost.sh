@@ -20,6 +20,17 @@ if [ -z "$ARCH" ]; then
     usage
 fi
 
+# For RTEMS, it's not a "cross" build-- it's a symlink!!
+if [ "$ARCH" == "RTEMS-beatnik" ]; then
+    cd "$EPICS_PACKAGE_TOP/boost/$VER"
+    mkdir -p $ARCH
+    if [ ! -L include ]; then
+        ln -v -s ../buildroot-2019.08-x86_64/include ./include
+    fi
+    echo "Created symlink..."
+    exit 0
+fi
+
 D=boost_$(echo $VER | sed 's/\./_/g')
 
 mkdir -p $EPICS_PACKAGE_TOP/boost/$VER/build/$ARCH
