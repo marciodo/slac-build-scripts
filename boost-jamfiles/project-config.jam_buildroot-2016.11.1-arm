@@ -9,12 +9,12 @@ import feature ;
 # file.
 if ! gcc in [ feature.values <toolset> ]
 {
-using gcc : : /afs/slac/package/linuxRT/buildroot-2016.11.1/host/linux-x86_64/arm/usr/bin/arm-buildroot-linux-gnueabi-g++ ;
+using gcc : : /sdf/sw/package/linuxRT/buildroot-2016.11.1/host/linux-x86_64/arm/usr/bin/arm-buildroot-linux-gnueabi-g++ ;
 }
 
 project : default-build <toolset>gcc ;
 
-path-constant ICU_PATH : /afs/slac/package/linuxRT/buildroot-2016.11.1/buildroot-2016.11.1-arm/output/staging/usr ;
+path-constant ICU_PATH : /sdf/sw/epics/package/linuxRT/buildroot-2016.11.1/buildroot-2016.11.1-arm/output/staging/usr ;
 
 
 # List of --with-<library> and --without-<library>
@@ -25,10 +25,10 @@ libraries =  --without-python ;
 
 # These settings are equivivalent to corresponding command-line
 # options.
-option.set prefix : /afs/slac/g/lcls/package/boost/1.64.0/buildroot-2016.11.1-arm ;
-option.set exec-prefix : /afs/slac/g/lcls/package/boost/1.64.0/buildroot-2016.11.1-arm ;
-option.set libdir : /afs/slac/g/lcls/package/boost/1.64.0/buildroot-2016.11.1-arm/lib ;
-option.set includedir : /afs/slac/g/lcls/package/boost/1.64.0/buildroot-2016.11.1-arm/include ;
+option.set prefix : /sdf/sw/epics/package/boost/1.64.0/buildroot-2016.11.1-arm ;
+option.set exec-prefix : /sdf/sw/epics/package/boost/1.64.0/buildroot-2016.11.1-arm ;
+option.set libdir : /sdf/sw/epics/package/boost/1.64.0/buildroot-2016.11.1-arm/lib ;
+option.set includedir : /sdf/sw/epics/package/boost/1.64.0/buildroot-2016.11.1-arm/include ;
 
 # Stop on first error
 option.set keep-going : false ;

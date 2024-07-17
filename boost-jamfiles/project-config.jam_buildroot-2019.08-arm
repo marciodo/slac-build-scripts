@@ -9,15 +9,15 @@ import feature ;
 # file.
 if ! gcc in [ feature.values <toolset> ]
 {
-using gcc : : /afs/slac/package/linuxRT/buildroot-2019.08/host/linux-x86_64/arm/usr/bin/arm-buildroot-linux-gnueabi-g++ ;
+using gcc : : /sdf/sw/epics/package/linuxRT/buildroot-2019.08/host/linux-x86_64/arm/usr/bin/arm-buildroot-linux-gnueabi-g++ ;
 }
 
 project : default-build <toolset>gcc ;
 
 # Python configuration
-using python : 3.6 : /afs/slac/g/lcls/package/python/3.6.1/buildroot-2019.08-arm/bin/python3 : /afs/slac/g/lcls/package/python/3.6.1/buildroot-2019.08-arm/include/python3.6m/ : /afs/slac/g/lcls/package/python/3.6.1/buildroot-2019.08-arm/lib/ ;
+#using python : 3.6 : /sdf/sw/epics/package/python/3.6.1/buildroot-2019.08-arm/bin/python3 : /sdf/sw/epics/package/python/3.6.1/buildroot-2019.08-arm/include/python3.6m/ : /sdf/sw/epics/package/python/3.6.1/buildroot-2019.08-arm/lib/ ;
 
-path-constant ICU_PATH : /afs/slac/package/linuxRT/buildroot-2019.08/buildroot-2019.08-arm/output/staging/usr ;
+path-constant ICU_PATH : /sdf/sw/epics/package/linuxRT/buildroot-2019.08/buildroot-2019.08-arm/output/staging/usr ;
 
 
 # List of --with-<library> and --without-<library>
@@ -28,10 +28,10 @@ libraries =  ;
 
 # These settings are equivivalent to corresponding command-line
 # options.
-option.set prefix : /afs/slac/g/lcls/package/boost/1.64.0/buildroot-2019.08-arm ;
-option.set exec-prefix : /afs/slac/g/lcls/package/boost/1.64.0/buildroot-2019.08-arm ;
-option.set libdir : /afs/slac/g/lcls/package/boost/1.64.0/buildroot-2019.08-arm/lib ;
-option.set includedir : /afs/slac/g/lcls/package/boost/1.64.0/buildroot-2019.08-arm/include ;
+option.set prefix : /sdf/sw/epics/package/boost/1.64.0/buildroot-2019.08-arm ;
+option.set exec-prefix : /sdf/sw/epics/package/boost/1.64.0/buildroot-2019.08-arm ;
+option.set libdir : /sdf/sw/epics/package/boost/1.64.0/buildroot-2019.08-arm/lib ;
+option.set includedir : /sdf/sw/epics/package/boost/1.64.0/buildroot-2019.08-arm/include ;
 
 # Stop on first error
 option.set keep-going : false ;
