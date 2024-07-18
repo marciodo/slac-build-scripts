@@ -24,6 +24,7 @@ fi
 if [ "$ARCH" == "RTEMS-beatnik" ]; then
     cd "$EPICS_PACKAGE_TOP/boost/$VER"
     mkdir -p $ARCH
+    cd $ARCH
     if [ ! -L include ]; then
         ln -v -s ../buildroot-2019.08-x86_64/include ./include
     fi
