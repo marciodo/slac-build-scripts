@@ -21,7 +21,7 @@ if [ -z "$ARCH" ]; then
 fi
 
 # For RTEMS, it's not a "cross" build-- it's a symlink!!
-if [ "$ARCH" == "RTEMS-beatnik" ]; then
+if [[ $ARCH =~ "RTEMS"* ]]; then
     cd "$EPICS_PACKAGE_TOP/boost/$VER"
     mkdir -p $ARCH
     cd $ARCH
