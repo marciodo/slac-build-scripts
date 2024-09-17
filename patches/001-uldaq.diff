@@ -1,0 +1,43 @@
+diff --git a/Makefile.am b/Makefile.am
+index 0e69cd4..606aa05 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -26,7 +26,7 @@ dist_pkgconfig_DATA=libuldaq.pc
+ # fpga/USB_DIO32HS.bin
+ 
+ if OS_LINUX
+-rulesdatadir=/lib/udev/rules.d/
++rulesdatadir=$(libdir)/udev/rules.d/
+ dist_rulesdata_DATA=rules/50-uldaq.rules
+ endif
+ 
+@@ -43,12 +43,14 @@ dist-up: dist
+ 	cp $(distdir).tar.bz2 $(reldir)
+ 
+ if OS_LINUX
++if !NO_INSTALL_UDEV
+ install-data-hook:
+ 	udevadm control --reload-rules && \
+ 	test -f "/etc/redhat-release" && echo "/usr/local/lib" > /etc/ld.so.conf.d/uldaq.conf || echo "" && \
+ 	test -f "/etc/arch-release" && echo "/usr/local/lib" > /etc/ld.so.conf.d/uldaq.conf || echo "" && \
+ 	ldconfig
+ endif
++endif
+ 
+ if OS_LINUX
+ uninstall-hook:
+diff --git a/configure.ac b/configure.ac
+index 520f0d7..0ad66ac 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -64,6 +64,10 @@ AC_CHECK_LIB([usb-1.0], [libusb_init], [], [libul_lib_error libusb-1.0])
+ 
+ AC_CHECK_HEADERS([libusb-1.0/libusb.h], [], [libul_lib_error libusb-1.0])
+ 
++# udev stuff
++AC_ARG_ENABLE([no_udev_install], AS_HELP_STRING([--disable-udev-install], [Disable installation of udev rules [default=no]]))
++AM_CONDITIONAL(NO_INSTALL_UDEV, test "x$no_udev_install" != xno)
++
+ # OS info for Automake
+ AM_CONDITIONAL(OS_LINUX, test "x$os" = xlinux)
+ AM_CONDITIONAL(OS_DARWIN, test "x$os" = xdarwin)
