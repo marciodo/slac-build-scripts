@@ -37,7 +37,13 @@ fi
 mkdir -p build/$ARCH
 cd build/$ARCH
 
-../../net-snmp-$VER/configure --prefix="$PWD/../../$ARCH" --with-default-snmp-version=3 --without-perl-modules --disable-embedded-perl --with-logfile=/var/log/snmpd.log --with-persistent-directory=/var/net-snmp --with-sys-location=SLAC --with-sys-contact=lorelli
+../../net-snmp-$VER/configure --prefix="$PWD/../../$ARCH" \
+    --enable-shared --enable-static --with-default-snmp-version=3 --with-sys-contact=root@localhost \
+    --with-sys-location=Unknown --with-logfile=/var/log/snmpd.log --with-persistent-directory=/var/lib/net-snmp \
+    --enable-ipv6 --enable-ucd-snmp-compatibility --with-openssl=internal --with-pic \
+    --disable-embedded-perl --enable-as-needed --without-perl-modules \
+    --enable-mfd-rewrites \
+    --enable-local-smux '--with-mib-modules=host agentx smux ucd-snmp/diskio tcp-mib udp-mib mibII/mta_sendmail ip-mib/ipv4InterfaceTable ip-mib/ipv6InterfaceTable ip-mib/ipAddressPrefixTable/ipAddressPrefixTable ip-mib/ipDefaultRouterTable/ipDefaultRouterTable ip-mib/ipv6ScopeZoneIndexTable ip-mib/ipIfStatsTable sctp-mib rmon-mib etherlike-mib ucd-snmp/lmsensorsMib'
 
 # Make all and install must be in separate steps because autotools sucks.
 make 
