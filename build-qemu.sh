@@ -34,6 +34,6 @@ cd build/$ARCH
 source $EPICS_PACKAGE_TOP/anaconda/envs/python3.10envs/v1.0/bin/activate
 
 ../../src/configure --target-list="ppc-softmmu arm-softmmu aarch64-softmmu riscv32-softmmu riscv64-softmmu i386-softmmu x86_64-softmmu m68k-softmmu" \
-    --prefix="$PWD/../../$ARCH" --disable-docs --disable-containers --disable-opengl --disable-sdl
+    --prefix="$PWD/../../$ARCH" --disable-docs --disable-containers --disable-opengl --disable-sdl --enable-slirp
 
-make -j8 && make install -j8
+make -j$(nproc) && make install -j$(nproc)
