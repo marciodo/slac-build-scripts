@@ -38,7 +38,11 @@ if [ -f "$TOP/toolchains/$ARCH.bash" ]; then
 fi
 
 export CFLAGS=-fPIC
-../../src/configure --prefix="$PWD/../../$ARCH" --disable-gssapi
+if [ ! -z "$TARGET_SYSTEM" ]; then
+    ../../src/configure --prefix="$PWD/../../$ARCH" --disable-gssapi --host=$TARGET_SYSTEM
+else
+    ../../src/configure --prefix="$PWD/../../$ARCH" --disable-gssapi 
+fi
 
 make install -j$(nproc)
 
